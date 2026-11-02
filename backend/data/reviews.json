@@ -1,5 +1,143 @@
 [
   {
+    "review_id": "0ac7d25a-802e-481b-be06-33dc48ecbd45",
+    "filename": "SampleAgreement.pdf",
+    "created_at": "2026-11-02T18:45:08.444799+00:00",
+    "clauses": [
+      {
+        "id": "C-001",
+        "text": "SAMPLE SOFTWARE SERVICES AGREEMENT Date: 3 November 2026 Customer: Acme Retail Ltd. Supplier: Bright Systems Ltd. This ﬁctional agreement is for software testing and educational demonstration only. 1. Services The Supplier will provide software implementation, maintenance, and technical support services as described in a project plan agreed upon by both parties. 2. Fees and Payment The Customer will pay the fees stated in the project plan. The Supplier may require payment of each invoice within ﬁve (5) days of its date. The Customer must pay all invoiced amounts even if it disputes the quality of the services. 3. Limitation of Liability The Supplier's total liability arising from or related to this Agreement shall not exceed the fees paid by the Customer during the preceding twelve (12) months. The Supplier shall not be liable for indirect, incidental, special, or consequential damages, even where it has been advised that such damages may occur. 4. Indemniﬁcation The Customer shall indemnify, defend, and hold harmless the Supplier against any and all claims, losses, damages, liabilities, and expenses arising from the Customer's use of the services, whether or not the Supplier contributed to the event giving rise to the claim. 5. Term and Automatic Renewal This Agreement has an initial term of one (1) year and will automatically renew for successive one-year terms unless the Customer provides written notice of non-renewal at least ninety (90) days before the end of the current term. 6. Termination The Supplier may terminate this Agreement immediately for any breach by the Customer. The Customer may terminate only with the Supplier's written consent. No cure period is required before termination. 7. Conﬁdentiality Each party shall protect the other party's conﬁdential information using reasonable care. Conﬁdential information excludes information that becomes public without",
+        "category": "liability",
+        "classification_confidence": 0.96
+      },
+      {
+        "id": "C-002",
+        "text": "breach, was already lawfully known, or is independently developed. These obligations survive for three (3) years after termination. 8. Governing Law This Agreement is governed by the laws of the ﬁctional State of Northland, without regard to conﬂict-of-law principles. 9. Entire Agreement This Agreement represents the entire agreement between the parties concerning its subject matter and may be amended only by a written document signed by both parties. TEST DOCUMENT ONLY — NOT A REAL CONTRACT OR LEGAL ADVICE.",
+        "category": "termination",
+        "classification_confidence": 0.67
+      }
+    ],
+    "findings": [
+      {
+        "clause_id": "C-001",
+        "clause_text": "SAMPLE SOFTWARE SERVICES AGREEMENT Date: 3 November 2026 Customer: Acme Retail Ltd. Supplier: Bright Systems Ltd. This ﬁctional agreement is for software testing and educational demonstration only. 1. Services The Supplier will provide software implementation, maintenance, and technical support services as described in a project plan agreed upon by both parties. 2. Fees and Payment The Customer will pay the fees stated in the project plan. The Supplier may require payment of each invoice within ﬁve (5) days of its date. The Customer must pay all invoiced amounts even if it disputes the quality of the services. 3. Limitation of Liability The Supplier's total liability arising from or related to this Agreement shall not exceed the fees paid by the Customer during the preceding twelve (12) months. The Supplier shall not be liable for indirect, incidental, special, or consequential damages, even where it has been advised that such damages may occur. 4. Indemniﬁcation The Customer shall indemnify, defend, and hold harmless the Supplier against any and all claims, losses, damages, liabilities, and expenses arising from the Customer's use of the services, whether or not the Supplier contributed to the event giving rise to the claim. 5. Term and Automatic Renewal This Agreement has an initial term of one (1) year and will automatically renew for successive one-year terms unless the Customer provides written notice of non-renewal at least ninety (90) days before the end of the current term. 6. Termination The Supplier may terminate this Agreement immediately for any breach by the Customer. The Customer may terminate only with the Supplier's written consent. No cure period is required before termination. 7. Conﬁdentiality Each party shall protect the other party's conﬁdential information using reasonable care. Conﬁdential information excludes information that becomes public without",
+        "category": "liability",
+        "risk_level": "high",
+        "reasons": [
+          "The clause caps Supplier's liability at fees paid in the preceding 12 months, which aligns with POL-LIAB-01. However, it excludes indirect, incidental, special, and consequential damages, which may not be sufficient for the Customer's needs. The clause does not specify if the cap applies to all claims or only certain types, creating uncertainty about the scope of protection. The Customer must pay all invoiced amounts even if disputing service quality, which could lead to disputes over the validity of the cap if the service quality is disputed. The policy recommends legal review for uncapped liability, but this clause caps liability, so the risk is high due to potential gaps in coverage for the Customer's specific needs."
+        ],
+        "recommended_action": "Consult legal counsel to confirm the scope of the liability cap and ensure it adequately covers the Customer's potential risks.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review.",
+          "retrieval_method": "graph_category_match"
+        },
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Discussion draft for addressing high-risk liability clause",
+        "analysis_source": "qwen3_with_graph_retrieval",
+        "model_clause_type": "liability",
+        "retrieved_policies": [
+          {
+            "id": "POL-LIAB-01",
+            "category": "liability",
+            "title": "Liability cap",
+            "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+            "risk_guidance": "Uncapped or unlimited liability needs legal review.",
+            "retrieval_method": "graph_category_match"
+          }
+        ],
+        "redline_rationale": "The current liability cap excludes indirect, incidental, special, and consequential damages without clarifying scope, creating uncertainty. The Customer must pay disputed invoices, which may invalidate the cap if service quality is disputed. Policy POL-LIAB-01 requires legal review for uncapped liability, but this clause caps liability, so the risk is high due to potential gaps in coverage for the Customer's specific needs. The proposed wording clarifies scope and ensures the cap applies to all claims unless explicitly excluded, while preserving the commercial intent of limiting liability to fees paid in the preceding 12 months. This aligns with the policy's requirement for legal review to confirm adequate coverage for the Customer's risks.",
+        "redline_source": "qwen3"
+      },
+      {
+        "clause_id": "C-002",
+        "clause_text": "breach, was already lawfully known, or is independently developed. These obligations survive for three (3) years after termination. 8. Governing Law This Agreement is governed by the laws of the ﬁctional State of Northland, without regard to conﬂict-of-law principles. 9. Entire Agreement This Agreement represents the entire agreement between the parties concerning its subject matter and may be amended only by a written document signed by both parties. TEST DOCUMENT ONLY — NOT A REAL CONTRACT OR LEGAL ADVICE.",
+        "category": "termination",
+        "risk_level": "high",
+        "reasons": [
+          "The clause states that obligations survive for three (3) years after termination, but does not specify what constitutes a breach or how breaches are resolved. This creates uncertainty about the termination process and potential for prolonged obligations without clear breach resolution mechanisms, which aligns with POL-TERM-01's risk guidance that no exit path or long cure periods may create operational risk. The clause lacks clarity on breach conditions, making it high risk for the party seeking protection."
+        ],
+        "recommended_action": "Require explicit definition of breach conditions and a cure period within the termination clause to mitigate operational risk.",
+        "policy": {
+          "id": "POL-TERM-01",
+          "category": "termination",
+          "title": "Termination rights",
+          "text": "The agreement should provide a reasonable termination-for-convenience or cure mechanism where commercially appropriate.",
+          "risk_guidance": "No exit path or an unusually long cure period may create operational risk.",
+          "retrieval_method": "graph_category_match"
+        },
+        "policy_id": "POL-TERM-01",
+        "suggested_redline": "Suggested discussion draft: Include a written notice and reasonable opportunity to cure material breach, together with clearly defined termination rights. Counsel should tailor timing and exceptions.",
+        "analysis_source": "qwen3_with_graph_retrieval",
+        "model_clause_type": "termination",
+        "retrieved_policies": [
+          {
+            "id": "POL-TERM-01",
+            "category": "termination",
+            "title": "Termination rights",
+            "text": "The agreement should provide a reasonable termination-for-convenience or cure mechanism where commercially appropriate.",
+            "risk_guidance": "No exit path or an unusually long cure period may create operational risk.",
+            "retrieval_method": "graph_category_match"
+          }
+        ],
+        "redline_source": "template_fallback"
+      }
+    ],
+    "graph": {
+      "nodes": [
+        {
+          "id": "C-001",
+          "label": "Liability",
+          "type": "clause",
+          "detail": "SAMPLE SOFTWARE SERVICES AGREEMENT Date: 3 November 2026 Customer: Acme Retail Ltd. Supplier: Bright Systems Ltd. This ﬁctional agreement is for software testing and educational de"
+        },
+        {
+          "id": "C-002",
+          "label": "Termination",
+          "type": "clause",
+          "detail": "breach, was already lawfully known, or is independently developed. These obligations survive for three (3) years after termination. 8. Governing Law This Agreement is governed by t"
+        },
+        {
+          "id": "POL-LIAB-01",
+          "label": "Liability cap",
+          "type": "policy",
+          "detail": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs."
+        },
+        {
+          "id": "POL-TERM-01",
+          "label": "Termination rights",
+          "type": "policy",
+          "detail": "The agreement should provide a reasonable termination-for-convenience or cure mechanism where commercially appropriate."
+        }
+      ],
+      "edges": [
+        {
+          "source": "C-001",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-002",
+          "target": "POL-TERM-01",
+          "label": "checked against"
+        }
+      ]
+    },
+    "stage_log": [
+      "pdf_extracted",
+      "document_processing_completed",
+      "clause_classification_completed",
+      "graph_policy_retrieval_completed",
+      "qwen3_risk_analysis_completed",
+      "redlining_completed"
+    ],
+    "decisions": [],
+    "disclaimer": "Prototype for educational research only. Findings and suggested wording require review by qualified counsel."
+  },
+  {
     "review_id": "937713f4-b656-4696-ae93-47dc60e41195",
     "filename": "Test_agreement.pdf",
     "created_at": "2026-10-25T18:40:50.418912+00:00",

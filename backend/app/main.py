@@ -3,14 +3,14 @@ import json, re, uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import TypedDict, Any
-
+import asyncio
 import httpx
 import pymupdf
 import networkx as nx
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from app.ollama_service import generate_text
+from app.ollama_service import generate_text, generate_json
 
 try:
     from langgraph.graph import StateGraph, END
@@ -47,7 +47,106 @@ RISK_RULES = {
  "high": [r"unlimited liability", r"without limitation", r"perpetual and irrevocable", r"sole discretion"],
  "medium": [r"automatically renew", r"automatic renewal", r"within 5 days", r"waive all claims", r"indemnify.*any and all"],
 }
+# Prototype contract-policy knowledge graph.
+# NetworkX stores policy knowledge and its relationships.
 
+KNOWLEDGE_GRAPH = nx.DiGraph()
+
+for policy in POLICIES:
+    KNOWLEDGE_GRAPH.add_node(
+        policy["id"],
+        node_type="policy",
+        category=policy["category"],
+        title=policy["title"],
+        text=policy["text"],
+        risk_guidance=policy["risk_guidance"],
+    )
+
+    KNOWLEDGE_GRAPH.add_node(
+        f"CATEGORY-{policy['category'].upper()}",
+        node_type="category",
+        category=policy["category"],
+    )
+
+    KNOWLEDGE_GRAPH.add_edge(
+        policy["id"],
+        f"CATEGORY-{policy['category'].upper()}",
+        relation="belongs_to",
+    )
+
+    KNOWLEDGE_GRAPH.add_edge(
+        f"CATEGORY-{policy['category'].upper()}",
+        policy["id"],
+        relation="has_policy",
+    )
+
+
+def retrieve_graph_policies(
+    category: str,
+    clause_text: str,
+) -> list[dict[str, Any]]:
+    """
+    Retrieve policy knowledge through NetworkX graph relationships.
+
+    Exact category matches are preferred. If no category matches,
+    use text overlap to select the most relevant available policy.
+    """
+
+    category_node = f"CATEGORY-{category.upper()}"
+
+    policy_ids = []
+
+    if category_node in KNOWLEDGE_GRAPH:
+        policy_ids = [
+            node
+            for node in KNOWLEDGE_GRAPH.successors(category_node)
+            if KNOWLEDGE_GRAPH.nodes[node].get("node_type") == "policy"
+        ]
+
+    if policy_ids:
+        return [
+            {
+                "id": policy_id,
+                "category": KNOWLEDGE_GRAPH.nodes[policy_id]["category"],
+                "title": KNOWLEDGE_GRAPH.nodes[policy_id]["title"],
+                "text": KNOWLEDGE_GRAPH.nodes[policy_id]["text"],
+                "risk_guidance": KNOWLEDGE_GRAPH.nodes[policy_id]["risk_guidance"],
+                "retrieval_method": "graph_category_match",
+            }
+            for policy_id in policy_ids
+        ]
+
+    # Fallback for general or unclassified clauses.
+    words = set(re.findall(r"[a-z]{4,}", clause_text.lower()))
+    ranked = []
+
+    for policy in POLICIES:
+        policy_words = set(
+            re.findall(
+                r"[a-z]{4,}",
+                (
+                    policy["title"]
+                    + " "
+                    + policy["text"]
+                    + " "
+                    + policy["risk_guidance"]
+                ).lower(),
+            )
+        )
+
+        overlap = len(words & policy_words)
+        ranked.append((overlap, policy))
+
+    ranked.sort(key=lambda item: item[0], reverse=True)
+
+    return [
+        {
+            **policy,
+            "retrieval_method": "keyword_fallback",
+        }
+        for overlap, policy in ranked[:2]
+        if overlap > 0
+    ]
 class ReviewDecision(BaseModel):
     review_id: str
     clause_id: str
@@ -64,6 +163,7 @@ class WorkflowState(TypedDict, total=False):
     text: str
     clauses: list[dict[str, Any]]
     findings: list[dict[str, Any]]
+    retrieved_policies: dict[str, list[dict[str, Any]]]
     stage_log: list[str]
 
 
@@ -158,33 +258,327 @@ def generate_redline(clause: str, category: str, policy: dict) -> str:
     return f"Review the clause against policy {policy['id']} and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
 
 # LangGraph is used when installed: explicit nodes with shared state. Day 1 nodes wrap real deterministic functions.
-def _extract_node(state: WorkflowState): return {"stage_log": state.get("stage_log", []) + ["extract_node_completed"]}
-def _classify_node(state: WorkflowState):
-    clauses=[]
-    for i, txt in enumerate(split_clauses(state["text"]),1):
-        cat, conf=classify_clause(txt); clauses.append({"id":f"C-{i:03d}","text":txt,"category":cat,"classification_confidence":conf})
-    return {"clauses":clauses,"stage_log":state.get("stage_log",[])+["classification_agent_completed"]}
-def _risk_node(state: WorkflowState):
-    findings=[]
-    for c in state.get("clauses",[]):
-        policy=retrieve_policy(c["category"],c["text"]); risk=assess_risk(c["text"],c["category"],policy)
-        risk.update({"clause_id":c["id"],"clause_text":c["text"],"category":c["category"],"policy_id":policy["id"],"suggested_redline":generate_redline(c["text"],c["category"],policy)})
-        findings.append(risk)
-    return {"findings":findings,"stage_log":state.get("stage_log",[])+["risk_analysis_agent_completed","redlining_agent_completed"]}
+# ---------------------------------------------------------
+# ContractSentinel LangGraph workflow
+# ---------------------------------------------------------
+
+def _extract_node(state: WorkflowState) -> dict:
+    return {
+        "stage_log": state.get("stage_log", [])
+        + ["document_processing_completed"]
+    }
+
+
+def _classify_node(state: WorkflowState) -> dict:
+    """
+    Initial clause classifier.
+    Uses the existing baseline until the CUAD-trained SVM
+    classifier is implemented and evaluated.
+    """
+
+    clauses = []
+
+    for i, clause_text in enumerate(
+        split_clauses(state["text"])[:15],
+        start=1,
+    ):
+        category, confidence = classify_clause(clause_text)
+
+        clauses.append({
+            "id": f"C-{i:03d}",
+            "text": clause_text,
+            "category": category,
+            "classification_confidence": confidence,
+        })
+
+    return {
+        "clauses": clauses,
+        "stage_log": state.get("stage_log", [])
+        + ["clause_classification_completed"],
+    }
+
+
+def _graph_retrieval_node(state: WorkflowState) -> dict:
+    """
+    Retrieve relevant policies from the NetworkX knowledge graph.
+    """
+
+    retrieved = {}
+
+    for clause in state.get("clauses", []):
+        retrieved[clause["id"]] = retrieve_graph_policies(
+            clause["category"],
+            clause["text"],
+        )
+
+    return {
+        "retrieved_policies": retrieved,
+        "stage_log": state.get("stage_log", [])
+        + ["graph_policy_retrieval_completed"],
+    }
+
+
+async def _risk_analysis_node(state: WorkflowState) -> dict:
+    """
+    Use local Qwen3 to assess clauses against retrieved policy context.
+    """
+
+    findings = []
+
+    for clause in state.get("clauses", []):
+        policies = state.get("retrieved_policies", {}).get(
+            clause["id"], []
+        )
+
+        if not policies:
+            findings.append({
+                "clause_id": clause["id"],
+                "clause_text": clause["text"],
+                "category": clause["category"],
+                "risk_level": "medium",
+                "reasons": [
+                    "No matching policy was retrieved. Manual review is required."
+                ],
+                "recommended_action": (
+                    "Review this clause manually because no matching "
+                    "policy context was available."
+                ),
+                "policy": {
+                    "id": "POL-NONE",
+                    "title": "No matching policy",
+                    "text": "No matching policy was retrieved.",
+                },
+                "policy_id": "POL-NONE",
+                "suggested_redline": (
+                    "Manual review required; no automatic amendment generated."
+                ),
+                "analysis_source": "fallback_no_policy",
+            })
+            continue
+
+        policy_context = [
+            {
+                "id": policy["id"],
+                "title": policy["title"],
+                "category": policy["category"],
+                "text": policy["text"],
+                "risk_guidance": policy["risk_guidance"],
+            }
+            for policy in policies
+        ]
+
+        schema = {
+            "type": "object",
+            "properties": {
+                "clause_type": {"type": "string"},
+                "risk_level": {
+                    "type": "string",
+                    "enum": ["low", "medium", "high"],
+                },
+                "explanation": {"type": "string"},
+                "recommended_action": {"type": "string"},
+            },
+            "required": [
+                "clause_type",
+                "risk_level",
+                "explanation",
+                "recommended_action",
+            ],
+            "additionalProperties": False,
+        }
+
+        prompt = f"""
+Analyze this contract clause from the perspective of the party
+seeking appropriate contractual protection.
+
+CONTRACT CLAUSE:
+{clause["text"]}
+
+INITIAL CLAUSE CATEGORY:
+{clause["category"]}
+
+RETRIEVED POLICY CONTEXT:
+{json.dumps(policy_context, ensure_ascii=False)}
+
+Instructions:
+- Assess the clause in the context of the retrieved policies.
+- Explain the specific wording that creates or reduces risk.
+- Do not invent facts that are absent from the clause.
+- Do not claim that a clause is illegal without sufficient context.
+- If context is insufficient, explain that uncertainty.
+- Use high, medium, or low risk.
+- Keep the explanation concise.
+- Return only the requested structured fields.
+"""
+
+        try:
+            assessment = await generate_json(prompt, schema)
+
+            primary_policy = policies[0]
+
+            findings.append({
+                "clause_id": clause["id"],
+                "clause_text": clause["text"],
+                "category": clause["category"],
+                "risk_level": assessment["risk_level"],
+                "reasons": [assessment["explanation"]],
+                "recommended_action": assessment["recommended_action"],
+                "policy": primary_policy,
+                "policy_id": primary_policy["id"],
+                "suggested_redline": "",
+                "analysis_source": "qwen3_with_graph_retrieval",
+                "model_clause_type": assessment["clause_type"],
+                "retrieved_policies": policies,
+            })
+
+        except (
+            httpx.HTTPError,
+            RuntimeError,
+            ValueError,
+            KeyError,
+        ) as exc:
+            # Keep the analysis operational if local model inference fails.
+            primary_policy = policies[0]
+
+            fallback = assess_risk(
+                clause["text"],
+                clause["category"],
+                primary_policy,
+            )
+
+            findings.append({
+                "clause_id": clause["id"],
+                "clause_text": clause["text"],
+                "category": clause["category"],
+                **fallback,
+                "policy_id": primary_policy["id"],
+                "suggested_redline": "",
+                "analysis_source": "deterministic_fallback",
+                "analysis_error": str(exc),
+                "retrieved_policies": policies,
+            })
+
+    return {
+        "findings": findings,
+        "stage_log": state.get("stage_log", [])
+        + ["qwen3_risk_analysis_completed"],
+    }
+
+
+async def _redlining_node(state: WorkflowState) -> dict:
+    """
+    Generate a proposed amendment for each finding using Qwen3.
+    """
+
+    updated_findings = []
+
+    schema = {
+        "type": "object",
+        "properties": {
+            "suggested_redline": {"type": "string"},
+            "redline_rationale": {"type": "string"},
+        },
+        "required": [
+            "suggested_redline",
+            "redline_rationale",
+        ],
+        "additionalProperties": False,
+    }
+
+    for finding in state.get("findings", []):
+        # Don't present a model-generated amendment as reliable
+        # when the risk assessment itself fell back.
+        if finding.get("analysis_source") == "deterministic_fallback":
+            finding["suggested_redline"] = generate_redline(
+                finding["clause_text"],
+                finding["category"],
+                finding["policy"],
+            )
+            finding["redline_source"] = "template_fallback"
+            updated_findings.append(finding)
+            continue
+
+        prompt = f"""
+Propose a concise discussion draft to address the identified
+contract risk. This is a proposal for review by qualified counsel,
+not a final legal amendment.
+
+ORIGINAL CLAUSE:
+{finding["clause_text"]}
+
+RISK LEVEL:
+{finding["risk_level"]}
+
+RISK EXPLANATION:
+{" ".join(finding["reasons"])}
+
+RECOMMENDED ACTION:
+{finding["recommended_action"]}
+
+RELEVANT POLICY:
+{json.dumps(finding.get("retrieved_policies", []), ensure_ascii=False)}
+
+Requirements:
+- Preserve the original commercial intent where possible.
+- Do not invent names, dates, monetary amounts, or other facts.
+- Use placeholders if specific terms need negotiation.
+- Clearly identify the proposed wording as a discussion draft.
+- Keep the rationale concise.
+"""
+
+        try:
+            redline = await generate_json(prompt, schema)
+
+            finding["suggested_redline"] = redline["suggested_redline"]
+            finding["redline_rationale"] = redline["redline_rationale"]
+            finding["redline_source"] = "qwen3"
+
+        except (
+            httpx.HTTPError,
+            RuntimeError,
+            ValueError,
+            KeyError,
+        ):
+            finding["suggested_redline"] = generate_redline(
+                finding["clause_text"],
+                finding["category"],
+                finding["policy"],
+            )
+            finding["redline_source"] = "template_fallback"
+
+        updated_findings.append(finding)
+
+    return {
+        "findings": updated_findings,
+        "stage_log": state.get("stage_log", [])
+        + ["redlining_completed"],
+    }
+
 
 def build_graph():
-    if not LANGGRAPH_AVAILABLE: return None
-    g=StateGraph(WorkflowState)
-    g.add_node("document_processing",_extract_node)
-    g.add_node("clause_classification_agent",_classify_node)
-    g.add_node("risk_and_redlining_agents",_risk_node)
-    g.set_entry_point("document_processing")
-    g.add_edge("document_processing","clause_classification_agent")
-    g.add_edge("clause_classification_agent","risk_and_redlining_agents")
-    g.add_edge("risk_and_redlining_agents",END)
-    return g.compile()
+    if not LANGGRAPH_AVAILABLE:
+        return None
 
-GRAPH=build_graph()
+    graph = StateGraph(WorkflowState)
+
+    graph.add_node("document_processing", _extract_node)
+    graph.add_node("clause_classification", _classify_node)
+    graph.add_node("graph_retrieval", _graph_retrieval_node)
+    graph.add_node("risk_analysis_agent", _risk_analysis_node)
+    graph.add_node("redlining_agent", _redlining_node)
+
+    graph.set_entry_point("document_processing")
+
+    graph.add_edge("document_processing", "clause_classification")
+    graph.add_edge("clause_classification", "graph_retrieval")
+    graph.add_edge("graph_retrieval", "risk_analysis_agent")
+    graph.add_edge("risk_analysis_agent", "redlining_agent")
+    graph.add_edge("redlining_agent", END)
+
+    return graph.compile()
+
+
+GRAPH = build_graph()
 
 @app.post("/api/llm-test")
 async def llm_test(body: LLMTestRequest):
@@ -227,7 +621,18 @@ async def llm_test(body: LLMTestRequest):
 
 @app.get("/api/health")
 def health():
-    return {"status":"ok","service":"ContractSentinel API","langgraph_enabled":LANGGRAPH_AVAILABLE,"workflow":"LangGraph" if GRAPH else "deterministic fallback","version":"0.1.0"}
+    return {
+        "status": "ok",
+        "service": "ContractSentinel API",
+        "langgraph_enabled": LANGGRAPH_AVAILABLE,
+        "workflow": (
+            "LangGraph with Qwen3 and NetworkX policy retrieval"
+            if GRAPH
+            else "deterministic fallback"
+        ),
+        "model": "qwen3:4b",
+        "version": "0.1.0",
+    }
 
 @app.get("/api/policies")
 def policies(): return POLICIES
@@ -240,7 +645,10 @@ async def analyze(file: UploadFile = File(...)):
     if len(data)>15*1024*1024: raise HTTPException(status_code=413, detail="File exceeds the 15 MB MVP limit.")
     text=extract_pdf(data)
     if GRAPH:
-        result=GRAPH.invoke({"text":text,"stage_log":["pdf_extracted"]})
+        result = await GRAPH.ainvoke({
+            "text": text,
+            "stage_log": ["pdf_extracted"],
+     })
         clauses=result.get("clauses",[]); findings=result.get("findings",[]); stages=result.get("stage_log",[])
     else:
         result=analyze_pipeline(text); clauses=result["clauses"]; findings=result["findings"]; stages=result["stage_log"]
