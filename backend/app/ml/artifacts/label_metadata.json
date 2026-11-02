@@ -1,0 +1,275 @@
+{
+  "project": "ContractSentinel",
+  "model_type": "TF-IDF + LinearSVC",
+  "training_file": "C:\\Users\\DEVEN ARUN BEDEKAR\\OneDrive\\Desktop\\ContractSentinel\\backend\\data\\processed\\cuad\\train_spans.jsonl",
+  "tfidf_config": {
+    "lowercase": true,
+    "strip_accents": "unicode",
+    "ngram_range": [
+      1,
+      2
+    ],
+    "max_features": 100000,
+    "sublinear_tf": true,
+    "min_df": 2,
+    "max_df": 0.98
+  },
+  "svm_config": {
+    "C": 1.0,
+    "class_weight": "balanced",
+    "random_state": 42,
+    "max_iter": 5000
+  },
+  "negative_label_warning": "Negative examples are provisional: they are single-label CUAD spans assigned to other categories, not exhaustively verified negative passages.",
+  "excluded_multilabel_spans": true,
+  "categories": {
+    "Affiliate License-Licensee": {
+      "status": "trained",
+      "positive_examples": 31,
+      "negative_examples": 8956,
+      "total_examples": 8987
+    },
+    "Affiliate License-Licensor": {
+      "status": "skipped",
+      "reason": "too_few_positive_examples",
+      "positive_examples": 15,
+      "negative_examples": 8972
+    },
+    "Agreement Date": {
+      "status": "trained",
+      "positive_examples": 172,
+      "negative_examples": 8815,
+      "total_examples": 8987
+    },
+    "Anti-Assignment": {
+      "status": "trained",
+      "positive_examples": 484,
+      "negative_examples": 8503,
+      "total_examples": 8987
+    },
+    "Audit Rights": {
+      "status": "trained",
+      "positive_examples": 532,
+      "negative_examples": 8455,
+      "total_examples": 8987
+    },
+    "Cap On Liability": {
+      "status": "trained",
+      "positive_examples": 428,
+      "negative_examples": 8559,
+      "total_examples": 8987
+    },
+    "Change Of Control": {
+      "status": "trained",
+      "positive_examples": 161,
+      "negative_examples": 8826,
+      "total_examples": 8987
+    },
+    "Competitive Restriction Exception": {
+      "status": "trained",
+      "positive_examples": 71,
+      "negative_examples": 8916,
+      "total_examples": 8987
+    },
+    "Covenant Not To Sue": {
+      "status": "trained",
+      "positive_examples": 125,
+      "negative_examples": 8862,
+      "total_examples": 8987
+    },
+    "Document Name": {
+      "status": "trained",
+      "positive_examples": 419,
+      "negative_examples": 8568,
+      "total_examples": 8987
+    },
+    "Effective Date": {
+      "status": "trained",
+      "positive_examples": 116,
+      "negative_examples": 8871,
+      "total_examples": 8987
+    },
+    "Exclusivity": {
+      "status": "trained",
+      "positive_examples": 226,
+      "negative_examples": 8761,
+      "total_examples": 8987
+    },
+    "Expiration Date": {
+      "status": "trained",
+      "positive_examples": 295,
+      "negative_examples": 8692,
+      "total_examples": 8987
+    },
+    "Governing Law": {
+      "status": "trained",
+      "positive_examples": 374,
+      "negative_examples": 8613,
+      "total_examples": 8987
+    },
+    "Insurance": {
+      "status": "trained",
+      "positive_examples": 434,
+      "negative_examples": 8553,
+      "total_examples": 8987
+    },
+    "Ip Ownership Assignment": {
+      "status": "trained",
+      "positive_examples": 239,
+      "negative_examples": 8748,
+      "total_examples": 8987
+    },
+    "Irrevocable Or Perpetual License": {
+      "status": "trained",
+      "positive_examples": 21,
+      "negative_examples": 8966,
+      "total_examples": 8987
+    },
+    "Joint Ip Ownership": {
+      "status": "trained",
+      "positive_examples": 91,
+      "negative_examples": 8896,
+      "total_examples": 8987
+    },
+    "License Grant": {
+      "status": "trained",
+      "positive_examples": 309,
+      "negative_examples": 8678,
+      "total_examples": 8987
+    },
+    "Liquidated Damages": {
+      "status": "trained",
+      "positive_examples": 82,
+      "negative_examples": 8905,
+      "total_examples": 8987
+    },
+    "Minimum Commitment": {
+      "status": "trained",
+      "positive_examples": 311,
+      "negative_examples": 8676,
+      "total_examples": 8987
+    },
+    "Most Favored Nation": {
+      "status": "trained",
+      "positive_examples": 32,
+      "negative_examples": 8955,
+      "total_examples": 8987
+    },
+    "No-Solicit Of Customers": {
+      "status": "trained",
+      "positive_examples": 33,
+      "negative_examples": 8954,
+      "total_examples": 8987
+    },
+    "No-Solicit Of Employees": {
+      "status": "trained",
+      "positive_examples": 61,
+      "negative_examples": 8926,
+      "total_examples": 8987
+    },
+    "Non-Compete": {
+      "status": "trained",
+      "positive_examples": 171,
+      "negative_examples": 8816,
+      "total_examples": 8987
+    },
+    "Non-Disparagement": {
+      "status": "trained",
+      "positive_examples": 50,
+      "negative_examples": 8937,
+      "total_examples": 8987
+    },
+    "Non-Transferable License": {
+      "status": "trained",
+      "positive_examples": 68,
+      "negative_examples": 8919,
+      "total_examples": 8987
+    },
+    "Notice Period To Terminate Renewal": {
+      "status": "skipped",
+      "reason": "too_few_positive_examples",
+      "positive_examples": 14,
+      "negative_examples": 8973
+    },
+    "Parties": {
+      "status": "trained",
+      "positive_examples": 2009,
+      "negative_examples": 6978,
+      "total_examples": 8987
+    },
+    "Post-Termination Services": {
+      "status": "trained",
+      "positive_examples": 326,
+      "negative_examples": 8661,
+      "total_examples": 8987
+    },
+    "Price Restrictions": {
+      "status": "trained",
+      "positive_examples": 24,
+      "negative_examples": 8963,
+      "total_examples": 8987
+    },
+    "Renewal Term": {
+      "status": "trained",
+      "positive_examples": 71,
+      "negative_examples": 8916,
+      "total_examples": 8987
+    },
+    "Revenue/Profit Sharing": {
+      "status": "trained",
+      "positive_examples": 323,
+      "negative_examples": 8664,
+      "total_examples": 8987
+    },
+    "Rofr/Rofo/Rofn": {
+      "status": "trained",
+      "positive_examples": 273,
+      "negative_examples": 8714,
+      "total_examples": 8987
+    },
+    "Source Code Escrow": {
+      "status": "trained",
+      "positive_examples": 58,
+      "negative_examples": 8929,
+      "total_examples": 8987
+    },
+    "Termination For Convenience": {
+      "status": "trained",
+      "positive_examples": 181,
+      "negative_examples": 8806,
+      "total_examples": 8987
+    },
+    "Third Party Beneficiary": {
+      "status": "trained",
+      "positive_examples": 28,
+      "negative_examples": 8959,
+      "total_examples": 8987
+    },
+    "Uncapped Liability": {
+      "status": "trained",
+      "positive_examples": 38,
+      "negative_examples": 8949,
+      "total_examples": 8987
+    },
+    "Unlimited/All-You-Can-Eat-License": {
+      "status": "skipped",
+      "reason": "too_few_positive_examples",
+      "positive_examples": 13,
+      "negative_examples": 8974
+    },
+    "Volume Restriction": {
+      "status": "trained",
+      "positive_examples": 130,
+      "negative_examples": 8857,
+      "total_examples": 8987
+    },
+    "Warranty Duration": {
+      "status": "trained",
+      "positive_examples": 148,
+      "negative_examples": 8839,
+      "total_examples": 8987
+    }
+  },
+  "trained_model_count": 38,
+  "category_count": 41
+}

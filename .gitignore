@@ -1,0 +1,42 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+venv*/
+.pytest_cache/
+.mypy_cache/
+
+# Node.js
+node_modules/
+dist/
+.vite/
+coverage/
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local model and dataset artifacts
+*.gguf
+*.safetensors
+*.pt
+*.pth
+*.onnx
+*.joblib
+*.pkl
+
+# Local data and generated files
+backend/data/raw/
+backend/data/processed/
+backend/data/interim/

@@ -1,0 +1,1090 @@
+[
+  {
+    "review_id": "937713f4-b656-4696-ae93-47dc60e41195",
+    "filename": "Test_agreement.pdf",
+    "created_at": "2026-10-25T18:40:50.418912+00:00",
+    "clauses": [
+      {
+        "id": "C-001",
+        "text": "SERVICE AGREEMENT 1. PAYMENT TERMS The customer shall pay all invoices within 90 days of receipt. 2. LIABILITY The service provider's total liability shall be unlimited for all claims, losses, and damages. 3. TERMINATION The customer may terminate this agreement at any time by providing 30 days' written notice. 4. DATA PROTECTION The service provider may share customer information with third parties without prior notiﬁcation or consent. 5. INTELLECTUAL PROPERTY All intellectual property created during the engagement shall be owned by the service provider, regardless of payment or contribution. 6. CONFIDENTIALITY Both parties shall maintain the conﬁdentiality of all non-public information received during the agreement.",
+        "category": "liability",
+        "classification_confidence": 0.91
+      }
+    ],
+    "findings": [
+      {
+        "risk_level": "high",
+        "reasons": [
+          "Liability language appears uncapped."
+        ],
+        "recommended_action": "Escalate for legal review and negotiate a clearer limitation.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-001",
+        "clause_text": "SERVICE AGREEMENT 1. PAYMENT TERMS The customer shall pay all invoices within 90 days of receipt. 2. LIABILITY The service provider's total liability shall be unlimited for all claims, losses, and damages. 3. TERMINATION The customer may terminate this agreement at any time by providing 30 days' written notice. 4. DATA PROTECTION The service provider may share customer information with third parties without prior notiﬁcation or consent. 5. INTELLECTUAL PROPERTY All intellectual property created during the engagement shall be owned by the service provider, regardless of payment or contribution. 6. CONFIDENTIALITY Both parties shall maintain the conﬁdentiality of all non-public information received during the agreement.",
+        "category": "liability",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Suggested discussion draft: Subject to mutually agreed exceptions, each party's aggregate liability should be capped at fees paid or payable under this agreement during the preceding twelve (12) months. Counsel should define appropriate carve-outs."
+      }
+    ],
+    "graph": {
+      "nodes": [
+        {
+          "id": "C-001",
+          "label": "Liability",
+          "type": "clause",
+          "detail": "SERVICE AGREEMENT 1. PAYMENT TERMS The customer shall pay all invoices within 90 days of receipt. 2. LIABILITY The service provider's total liability shall be unlimited for all cla"
+        },
+        {
+          "id": "POL-LIAB-01",
+          "label": "Liability cap",
+          "type": "policy",
+          "detail": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs."
+        }
+      ],
+      "edges": [
+        {
+          "source": "C-001",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        }
+      ]
+    },
+    "stage_log": [
+      "pdf_extracted",
+      "extract_node_completed",
+      "classification_agent_completed",
+      "risk_analysis_agent_completed",
+      "redlining_agent_completed"
+    ],
+    "decisions": [
+      {
+        "clause_id": "C-001",
+        "decision": "approved",
+        "reviewer_note": "",
+        "timestamp": "2026-10-25T18:42:37.439902+00:00"
+      }
+    ],
+    "disclaimer": "Prototype for educational research only. Findings and suggested wording require review by qualified counsel."
+  },
+  {
+    "review_id": "e164927a-f3d9-48ab-a47a-421a0fd6804c",
+    "filename": "Unit 1 Ai App.pdf",
+    "created_at": "2026-10-25T17:13:26.021787+00:00",
+    "clauses": [
+      {
+        "id": "C-001",
+        "text": "Q1. Discuss real-world applications of AI Application Architecture in Fraud Detection, Medical Imaging, Voice Assistants, and Generative AI Tools. 1. Deﬁnition of AI Application Architecture AI Application Architecture deﬁnes the foundational blueprint of how diƯerent components of an AI-powered system are organized, connected, and interact in real time to deliver intelligent behaviour, automated insights, and predictive responses to users. A well-designed architecture improves system reliability, maintainability, scalability, and performance. Poor architecture can cause high network latency, operational bottlenecks, system crashes, and scaling failures. 2. Real-World Applications A. Fraud Detection Fraud detection systems analyse ﬁnancial transactions in real time to identify suspicious or unusual activities.  The system receives credit card transaction data.  The API layer routes the transaction data to the AI model.  The AI model analyses spending patterns and detects anomalies.  Suspicious transactions can be ﬂagged, restricted, or blocked. Example: A bank uses an AI system to detect an unusual credit card transaction and ﬂag it for investigation. B. Medical Imaging Medical imaging systems use computer vision frameworks and deep learning algorithms to analyse medical scans.  The system receives medical images such as X-rays, MRIs, or CT scans.  The images are processed by an AI model.  The model identiﬁes possible abnormalities, tumours, or fractures.  The results assist radiologists in interpreting the scans. Example: An AI system analyses a chest X-ray and highlights a region that may require further examination.",
+        "category": "liability",
+        "classification_confidence": 0.67
+      },
+      {
+        "id": "C-002",
+        "text": "C. Voice Assistants Voice assistants capture and interpret spoken natural language to perform tasks or answer questions.  The application captures the user's voice.  The audio is processed to interpret the spoken request.  The AI system determines the appropriate response or action.  The result is returned to the user. Examples: Alexa and Siri. Voice assistants can answer informational queries, execute device commands, and support natural-language interactions. D. Generative AI Tools Generative AI tools use large pre-trained architectures and transformer models to create new content. They can generate:  Text: ChatGPT generates paragraphs and structured textual content.  Images: Midjourney generates digital graphics and images.  Code: GitHub Copilot assists in generating software code. These tools process user prompts and produce content based on the trained model. 3. Conclusion AI Application Architecture provides the structure required to connect user applications, APIs, AI models, and supporting systems. It enables applications such as fraud detection, medical imaging, voice assistants, and generative AI tools to deliver intelligent results eƯiciently.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-003",
+        "text": "Q2. Explain the 4 primary components of AI Application Architecture (Client App, API Layer, AI/ML Model, Database). Also explain the Client-Server paradigm in AI applications. 1. Introduction AI Application Architecture consists of interconnected components that work together to receive user input, process it using an AI model, store relevant information, and return results to the user. The four primary components are: 1. Client Application 2. API Layer 3. AI/ML Model 4. Database 2. Four Primary Components 1. Client Application The Client Application is the user interface (UI) layer through which users interact with the AI system. Functions:  Accepts input from users.  Displays the application's interface and controls.  Sends requests to the backend API.  Receives responses and displays the results. Example: A mobile application where a user enters a sentence to analyse its sentiment. 2. API Layer The API Layer acts as a communication gateway between the client application and the backend AI model. Functions:  Receives HTTP requests from the client.  Validates incoming data.  Handles authentication and rate limiting.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-004",
+        "text": " Routes requests to the appropriate AI model.  Returns model results to the client in a structured format. Example: A /sentiment endpoint receives text from the application and forwards it for sentiment prediction. 3. AI/ML Model The AI/ML Model is the trained mathematical architecture that performs inference on incoming data. Functions:  Receives validated input.  Processes the input using learned parameters and weights.  Generates predictions, classiﬁcations, or other AI outputs.  Returns results or conﬁdence scores. Example: A sentiment analysis model classiﬁes a sentence as positive or negative. 4. Database The Database provides persistent storage for application information. Functions:  Stores user proﬁle information.  Records historical model inputs and outputs.  Maintains application state and metadata.  Stores information that may support auditing or future model retraining. Example: A database stores the user's previous sentiment analysis results. 3. AI Application Architecture Diagram USER | v +-------------------+ | Client Application| | (User Interface)| +-------------------+",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-005",
+        "text": "| HTTP Request | v +-------------------+ | API Layer | | Validation, | | Authentication, | | Request Routing | +-------------------+ | v +-------------------+ | AI/ML Model | | Model Inference | +-------------------+ | v +-------------------+ | Database | | Persistent Storage| +-------------------+",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-006",
+        "text": "Prediction returns through the API Layer to the Client.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-007",
+        "text": "4. Client-Server Paradigm in AI Applications The Client-Server paradigm separates the responsibilities of the client application and the server. Client: Focuses on user interaction, interface rendering, input collection, and displaying results. Server: Handles API routing, authentication, database operations, AI model storage, inference, and computationally intensive tasks. Working 1. The client collects input from the user. 2. It sends an HTTP/HTTPS request to the server. 3. The server validates the request and checks authentication. 4. The AI model processes the input and generates a prediction. 5. The server formats the result as a JSON response. 6. The client receives the response and updates the user interface.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-008",
+        "text": "Q3. Describe the step-by-step Request-Response data ﬂow of a Sentiment Analysis application from user input to visual UI update, including the Model Inference Workﬂow. 1. Introduction Sentiment Analysis is an AI application that analyses text and classiﬁes the expressed sentiment, such as positive or negative. The application follows a request-response pipeline in which the user submits text, the API forwards the request to the AI model, and the resulting prediction is returned to the client for display. 2. Request-Response Data Flow Step 1: User Input The user enters a sentence into the client application's input ﬁeld. Example: This product exceeded my expectations!",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-009",
+        "text": "The client captures the text and prepares it for transmission. Step 2: API Request The client sends an asynchronous HTTP POST request to the /sentiment endpoint. The request contains the text in a structured payload. The API checks the request structure, authorization credentials, and applicable rate limits. Step 3: Input Validation and Preprocessing The API validates the incoming payload and ensures that the data is in the expected format. The text is then prepared in the format required by the trained model. In the example provided by the notes, the Transformer model receives tokenized text. Step 4: Model Inference The trained AI model processes the input and calculates a sentiment prediction. For example:  Predicted sentiment: Positive  Conﬁdence score: 0.94 Model inference means using an already-trained model to generate a prediction for new input, rather than training the model again. Step 5: Response Formatting The API converts the model output into a structured JSON response.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-010",
+        "text": "This is an illustrative JSON representation of the prediction described in the notes. Step 6: Response Delivery The API sends the response to the client through the network, along with the appropriate HTTP status code. The client receives the response and parses the JSON data. Step 7: Visual UI Update",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-011",
+        "text": "The client updates the user interface to display the prediction. For example, the application displays a green badge labelled “Positive Sentiment”. 3. Flowchart +---------------------------+ | User enters text | | \"This product exceeded | | my expectations!\" | +---------------------------+ | v +---------------------------+ | Client sends HTTP POST | | to /sentiment | +---------------------------+ | v +---------------------------+ | API validates request | | and checks authorization | +---------------------------+ | v +---------------------------+ | Text preprocessing and | | tokenization | +---------------------------+ | v",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-012",
+        "text": "+---------------------------+ | Trained AI Model | | Performs Inference | +---------------------------+ | v +---------------------------+ | Prediction: Positive | | Conﬁdence: 0.94 | +---------------------------+ | v +---------------------------+ | API formats JSON response | | and sends it to client | +---------------------------+ | v +---------------------------+ | Client parses response | | and updates visual UI | +---------------------------+ | v +---------------------------+ | Displays Positive | | Sentiment badge | +---------------------------+",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-013",
+        "text": "4. Model Inference Workﬂow The Model Inference Workﬂow consists of the following main operations: 1. Load the trained model: The previously trained model is loaded into system memory. 2. Prepare the input: Incoming text is validated and transformed into the format expected by the model. 3. Perform inference: The model processes the input through its network layers. 4. Generate the prediction: The model produces a sentiment label and conﬁdence score. 5. Format the output: The prediction is converted into a structured JSON response. 6. Return the result: The API sends the response to the client, which displays it on the UI.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-014",
+        "text": "Q4. Compare Pickle and Joblib serialization libraries in Python. 1. Deﬁnition of Serialization Serialization is the process of converting an object's in-memory state into a byte stream that can be saved to a ﬁle and reconstructed later. In machine learning, serialization allows a trained model to be saved and reused for predictions without repeating the expensive training process. Python provides libraries such as Pickle and Joblib for saving and loading trained models. 2. Comparison Between Pickle and Joblib Basis Pickle Joblib Deﬁnition Python library used to serialize and deserialize Python objects. Library commonly used to serialize and deserialize machine learning models and numerical data. Best suited for General Python objects and lightweight models. Scikit-learn models and objects involving large numerical arrays.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-015",
+        "text": "Basis Pickle Joblib Numerical arrays Can serialize numerical data, but may be less convenient for large arrays. Designed to work eƯiciently with large numerical arrays. Machine learning usage Suitable for simple models and general Python objects. Commonly preferred for saving scikit- learn models. Saving a model Uses pickle.dump(). Uses joblib.dump(). Loading a model Uses pickle.load(). Uses joblib.load(). Security Loading an untrusted serialized ﬁle may execute arbitrary code. Loading an untrusted serialized ﬁle may also execute arbitrary code.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-016",
+        "text": "Q5. Explain the 4 stages of Model Deployment. Also trace the complete lifecycle of a trained ML model. 1. Deﬁnition of Model Deployment Model Deployment is the process of integrating a trained machine learning model into a production environment so that it can receive live inputs and generate predictions for end users or other systems. It transforms a model developed in an experimental environment into an operational application component. 2. Four Stages of Model Deployment The deployment workﬂow can be explained using four major stages. Stage 1: Model Serialization The trained model is saved to a ﬁle using a serialization library such as Pickle or Joblib.  The model's learned state is saved.  The model can be reused without retraining.  The saved ﬁle can be loaded by the backend application.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-017",
+        "text": "Example: Saving a trained scikit-learn model as model.joblib. Stage 2: Build the API Layer The saved model is integrated into a backend web service using a framework such as Flask or FastAPI.  API endpoints are created.  The API accepts incoming requests.  Input data is validated.  The model generates predictions for valid inputs. Example: Creating a /predict endpoint that accepts input features and returns a prediction. Stage 3: Containerize the Application The model, API code, dependencies, and environment conﬁguration are packaged using Docker.  Dependencies are packaged with the application.  The runtime environment becomes more consistent.  The application can be deployed more reliably across environments. Stage 4: Deploy to the Cloud The containerized application is deployed to a cloud hosting environment.  The API becomes accessible to clients.  The backend receives live requests.  The model performs inference and returns results.  Production monitoring can be used to assess performance. Examples of cloud infrastructure mentioned in the notes include AWS and other managed cloud hosting platforms. 3. Complete Lifecycle of a Trained ML Model The lifecycle can be traced from model development to production use. Step 1: Model Training The model is trained using a prepared dataset to learn patterns and relationships. Step 2: Model Serialization",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-018",
+        "text": "The trained model is saved to disk using Pickle or Joblib. Step 3: Model Loading The deployment application loads the saved model into system memory. Step 4: API Development A backend service is developed using Flask or FastAPI to expose endpoints for prediction requests. Step 5: Containerization The application and its dependencies are packaged into a Docker container. Step 6: Deployment The containerized application is deployed to a suitable hosting environment. Step 7: Live Inference The API receives new input, validates it, passes it to the loaded model, and generates a prediction. Step 8: Response Delivery The prediction is formatted as JSON and returned to the client with an appropriate HTTP status code. Step 9: Monitoring and Optimization The deployed system is monitored for prediction performance, latency, reliability, and resource usage. The system can then be optimized or updated when necessary.",
+        "category": "liability",
+        "classification_confidence": 0.67
+      },
+      {
+        "id": "C-019",
+        "text": "Q6. Discuss REST API development using Flask/FastAPI. 1. Introduction to REST API REST stands for Representational State Transfer. It is an architectural style for designing networked applications. REST APIs commonly use HTTP for communication between a client and a server. They treat resources as addressable entities identiﬁed by Uniform Resource Identiﬁers (URIs). 2. Features of REST Architecture 1. Statelessness Each request must contain the information required by the server to process it. The server does not retain session context as part of the stateless request model. 2. Uniform Interface REST APIs follow consistent conventions for accessing resources and exchanging data. 3. Client-Server Separation",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-020",
+        "text": "The client handles the user interface, while the server handles backend logic, data management, and AI model inference. 3. Flask and FastAPI Flask Flask is a Python web framework that can be used to build backend APIs. Developers deﬁne routes and write functions to process incoming requests and return responses. FastAPI FastAPI is a Python framework used to develop APIs. It supports structured request handling and can use data models to validate incoming data. Both frameworks can expose trained machine learning models through HTTP endpoints.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-021",
+        "text": "Basis Flask FastAPI Framework Python web framework Python API framework Route deﬁnition Uses route decorators such as @app.route() Uses decorators such as @app.post() Request handling Commonly uses the request object Supports declared request models and type hints Data validation Often implemented explicitly or through extensions Supports validation using declared data models Response Can return JSON using jsonify() Can return Python dictionaries that are serialized to JSON AI integration Can load and call trained models Can load and call trained models",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-022",
+        "text": "Q8. Explain input validation principles in REST API development. Also explain how input validation prevents crashes, improves data consistency, and mitigates security vulnerabilities in backend AI endpoints. 1. Deﬁnition of Input Validation Input validation is the process of checking incoming data to ensure that it follows the expected structure, data types, formats, and value constraints before the application processes it. In an AI application, input validation ensures that the data sent to the backend is suitable for the API and the trained machine learning model. 2. Principles of Input Validation 1. Data Type Validation The API must check that each ﬁeld contains the expected data type. Example: If a model expects a numerical age, the API should reject a text value such as \"twenty\". 2. Required Field Validation The API must check whether all mandatory ﬁelds are present.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-023",
+        "text": "Example: A prediction endpoint requiring a features ﬁeld should reject a request in which that ﬁeld is missing. 3. Format Validation The API should verify that incoming values follow the required format. Example: An API can validate whether an email address follows the expected structure. 4. Range Validation The API should check whether numerical values fall within permitted limits. Example: If an input must be between 0 and 100, a value of 150 should be rejected. 5. Structure Validation The API should ensure that incoming JSON follows the expected schema. Example: A model expecting a list of four numerical features should reject an incompatible input structure. 6. Input Sanitization The backend should sanitize or safely handle incoming data to prevent malformed or unexpected values from causing problems. 7. Server-Side Validation Validation must be performed by the backend even if the client application already validates the input. Client-side checks improve the user experience, but they can be bypassed or manipulated. The backend must independently validate every request. (koi bhi 4 ya 5 principles likh do ) 3. How Input Validation Improves API Reliability and Security A. Prevents Application Crashes Invalid input may cause exceptions during data processing or model inference. For example, a model expecting numerical features may fail when it receives a string. Validation detects the problem before the model is called and allows the API to return a suitable error response instead of an unexpected server failure. B. Improves Data Consistency A model is trained using data with a particular structure and format. Incoming prediction data should match the model's expected input format.",
+        "category": "liability",
+        "classification_confidence": 0.67
+      },
+      {
+        "id": "C-024",
+        "text": "Validation checks:  Required ﬁelds  Data types  Feature structure  Permitted numerical ranges This reduces errors caused by incompatible input data. C. Mitigates Security Vulnerabilities An API must not automatically trust data received from a client. Attackers may manipulate requests or bypass client-side validation using external tools. Server-side validation and sanitization help prevent malformed or unexpected payloads from reaching sensitive backend operations. Input validation should be combined with authentication, authorization, rate limiting, and other appropriate security controls. D. Improves Error Handling When a request is invalid, the API can return a clear error response rather than allowing the failure to become an unhandled exception. The exact error message and status code depend on the API's validation rules. 4. Example of Input Validation in an AI Endpoint Suppose a student performance prediction API accepts study hours, attendance, and internal marks. The expected inputs are: Input Validation Rule Study hours Must be numeric and within the deﬁned permitted range.",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-025",
+        "text": "Input Validation Rule Attendance Must be numeric and between 0 and 100. Internal marks Must be numeric and between 0 and 100. Required ﬁelds All required values must be present. The API should reject this request because:  study_hours is a string rather than a number.  attendance exceeds the permitted range of 0–100. The model should not be called with this invalid input. The API should return an appropriate validation error. 5. Client-Side vs Server-Side Validation Basis Client-Side Validation Server-Side Validation Location Performed in the client application. Performed on the backend. Primary purpose Provides quick feedback to the user. Protects backend processing and enforces data rules. Can be bypassed? Yes. Must independently validate received requests. Security role Improves usability but is not suƯicient by itself. Acts as a necessary security control. Example Showing an error when a user enters invalid marks. Rejecting invalid marks before model inference. 6. Conclusion",
+        "category": "general",
+        "classification_confidence": 0.35
+      },
+      {
+        "id": "C-026",
+        "text": "Input validation is an essential part of REST API development. It checks data types, required ﬁelds, formats, structures, and permitted ranges. Proper server-side validation prevents invalid data from reaching the AI model, improves data consistency, reduces unexpected failures, and strengthens backend security.",
+        "category": "general",
+        "classification_confidence": 0.35
+      }
+    ],
+    "findings": [
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-001",
+        "clause_text": "Q1. Discuss real-world applications of AI Application Architecture in Fraud Detection, Medical Imaging, Voice Assistants, and Generative AI Tools. 1. Deﬁnition of AI Application Architecture AI Application Architecture deﬁnes the foundational blueprint of how diƯerent components of an AI-powered system are organized, connected, and interact in real time to deliver intelligent behaviour, automated insights, and predictive responses to users. A well-designed architecture improves system reliability, maintainability, scalability, and performance. Poor architecture can cause high network latency, operational bottlenecks, system crashes, and scaling failures. 2. Real-World Applications A. Fraud Detection Fraud detection systems analyse ﬁnancial transactions in real time to identify suspicious or unusual activities.  The system receives credit card transaction data.  The API layer routes the transaction data to the AI model.  The AI model analyses spending patterns and detects anomalies.  Suspicious transactions can be ﬂagged, restricted, or blocked. Example: A bank uses an AI system to detect an unusual credit card transaction and ﬂag it for investigation. B. Medical Imaging Medical imaging systems use computer vision frameworks and deep learning algorithms to analyse medical scans.  The system receives medical images such as X-rays, MRIs, or CT scans.  The images are processed by an AI model.  The model identiﬁes possible abnormalities, tumours, or fractures.  The results assist radiologists in interpreting the scans. Example: An AI system analyses a chest X-ray and highlights a region that may require further examination.",
+        "category": "liability",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Suggested discussion draft: Subject to mutually agreed exceptions, each party's aggregate liability should be capped at fees paid or payable under this agreement during the preceding twelve (12) months. Counsel should define appropriate carve-outs."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-IND-01",
+          "category": "indemnity",
+          "title": "Mutual indemnity",
+          "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable.",
+          "risk_guidance": "One-sided or unlimited indemnity may create material exposure."
+        },
+        "clause_id": "C-002",
+        "clause_text": "C. Voice Assistants Voice assistants capture and interpret spoken natural language to perform tasks or answer questions.  The application captures the user's voice.  The audio is processed to interpret the spoken request.  The AI system determines the appropriate response or action.  The result is returned to the user. Examples: Alexa and Siri. Voice assistants can answer informational queries, execute device commands, and support natural-language interactions. D. Generative AI Tools Generative AI tools use large pre-trained architectures and transformer models to create new content. They can generate:  Text: ChatGPT generates paragraphs and structured textual content.  Images: Midjourney generates digital graphics and images.  Code: GitHub Copilot assists in generating software code. These tools process user prompts and produce content based on the trained model. 3. Conclusion AI Application Architecture provides the structure required to connect user applications, APIs, AI models, and supporting systems. It enables applications such as fraud detection, medical imaging, voice assistants, and generative AI tools to deliver intelligent results eƯiciently.",
+        "category": "general",
+        "policy_id": "POL-IND-01",
+        "suggested_redline": "Review the clause against policy POL-IND-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-IND-01",
+          "category": "indemnity",
+          "title": "Mutual indemnity",
+          "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable.",
+          "risk_guidance": "One-sided or unlimited indemnity may create material exposure."
+        },
+        "clause_id": "C-003",
+        "clause_text": "Q2. Explain the 4 primary components of AI Application Architecture (Client App, API Layer, AI/ML Model, Database). Also explain the Client-Server paradigm in AI applications. 1. Introduction AI Application Architecture consists of interconnected components that work together to receive user input, process it using an AI model, store relevant information, and return results to the user. The four primary components are: 1. Client Application 2. API Layer 3. AI/ML Model 4. Database 2. Four Primary Components 1. Client Application The Client Application is the user interface (UI) layer through which users interact with the AI system. Functions:  Accepts input from users.  Displays the application's interface and controls.  Sends requests to the backend API.  Receives responses and displays the results. Example: A mobile application where a user enters a sentence to analyse its sentiment. 2. API Layer The API Layer acts as a communication gateway between the client application and the backend AI model. Functions:  Receives HTTP requests from the client.  Validates incoming data.  Handles authentication and rate limiting.",
+        "category": "general",
+        "policy_id": "POL-IND-01",
+        "suggested_redline": "Review the clause against policy POL-IND-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-IND-01",
+          "category": "indemnity",
+          "title": "Mutual indemnity",
+          "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable.",
+          "risk_guidance": "One-sided or unlimited indemnity may create material exposure."
+        },
+        "clause_id": "C-004",
+        "clause_text": " Routes requests to the appropriate AI model.  Returns model results to the client in a structured format. Example: A /sentiment endpoint receives text from the application and forwards it for sentiment prediction. 3. AI/ML Model The AI/ML Model is the trained mathematical architecture that performs inference on incoming data. Functions:  Receives validated input.  Processes the input using learned parameters and weights.  Generates predictions, classiﬁcations, or other AI outputs.  Returns results or conﬁdence scores. Example: A sentiment analysis model classiﬁes a sentence as positive or negative. 4. Database The Database provides persistent storage for application information. Functions:  Stores user proﬁle information.  Records historical model inputs and outputs.  Maintains application state and metadata.  Stores information that may support auditing or future model retraining. Example: A database stores the user's previous sentiment analysis results. 3. AI Application Architecture Diagram USER | v +-------------------+ | Client Application| | (User Interface)| +-------------------+",
+        "category": "general",
+        "policy_id": "POL-IND-01",
+        "suggested_redline": "Review the clause against policy POL-IND-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-005",
+        "clause_text": "| HTTP Request | v +-------------------+ | API Layer | | Validation, | | Authentication, | | Request Routing | +-------------------+ | v +-------------------+ | AI/ML Model | | Model Inference | +-------------------+ | v +-------------------+ | Database | | Persistent Storage| +-------------------+",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-006",
+        "clause_text": "Prediction returns through the API Layer to the Client.",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-007",
+        "clause_text": "4. Client-Server Paradigm in AI Applications The Client-Server paradigm separates the responsibilities of the client application and the server. Client: Focuses on user interaction, interface rendering, input collection, and displaying results. Server: Handles API routing, authentication, database operations, AI model storage, inference, and computationally intensive tasks. Working 1. The client collects input from the user. 2. It sends an HTTP/HTTPS request to the server. 3. The server validates the request and checks authentication. 4. The AI model processes the input and generates a prediction. 5. The server formats the result as a JSON response. 6. The client receives the response and updates the user interface.",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-008",
+        "clause_text": "Q3. Describe the step-by-step Request-Response data ﬂow of a Sentiment Analysis application from user input to visual UI update, including the Model Inference Workﬂow. 1. Introduction Sentiment Analysis is an AI application that analyses text and classiﬁes the expressed sentiment, such as positive or negative. The application follows a request-response pipeline in which the user submits text, the API forwards the request to the AI model, and the resulting prediction is returned to the client for display. 2. Request-Response Data Flow Step 1: User Input The user enters a sentence into the client application's input ﬁeld. Example: This product exceeded my expectations!",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-IND-01",
+          "category": "indemnity",
+          "title": "Mutual indemnity",
+          "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable.",
+          "risk_guidance": "One-sided or unlimited indemnity may create material exposure."
+        },
+        "clause_id": "C-009",
+        "clause_text": "The client captures the text and prepares it for transmission. Step 2: API Request The client sends an asynchronous HTTP POST request to the /sentiment endpoint. The request contains the text in a structured payload. The API checks the request structure, authorization credentials, and applicable rate limits. Step 3: Input Validation and Preprocessing The API validates the incoming payload and ensures that the data is in the expected format. The text is then prepared in the format required by the trained model. In the example provided by the notes, the Transformer model receives tokenized text. Step 4: Model Inference The trained AI model processes the input and calculates a sentiment prediction. For example:  Predicted sentiment: Positive  Conﬁdence score: 0.94 Model inference means using an already-trained model to generate a prediction for new input, rather than training the model again. Step 5: Response Formatting The API converts the model output into a structured JSON response.",
+        "category": "general",
+        "policy_id": "POL-IND-01",
+        "suggested_redline": "Review the clause against policy POL-IND-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-IND-01",
+          "category": "indemnity",
+          "title": "Mutual indemnity",
+          "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable.",
+          "risk_guidance": "One-sided or unlimited indemnity may create material exposure."
+        },
+        "clause_id": "C-010",
+        "clause_text": "This is an illustrative JSON representation of the prediction described in the notes. Step 6: Response Delivery The API sends the response to the client through the network, along with the appropriate HTTP status code. The client receives the response and parses the JSON data. Step 7: Visual UI Update",
+        "category": "general",
+        "policy_id": "POL-IND-01",
+        "suggested_redline": "Review the clause against policy POL-IND-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-011",
+        "clause_text": "The client updates the user interface to display the prediction. For example, the application displays a green badge labelled “Positive Sentiment”. 3. Flowchart +---------------------------+ | User enters text | | \"This product exceeded | | my expectations!\" | +---------------------------+ | v +---------------------------+ | Client sends HTTP POST | | to /sentiment | +---------------------------+ | v +---------------------------+ | API validates request | | and checks authorization | +---------------------------+ | v +---------------------------+ | Text preprocessing and | | tokenization | +---------------------------+ | v",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-012",
+        "clause_text": "+---------------------------+ | Trained AI Model | | Performs Inference | +---------------------------+ | v +---------------------------+ | Prediction: Positive | | Conﬁdence: 0.94 | +---------------------------+ | v +---------------------------+ | API formats JSON response | | and sends it to client | +---------------------------+ | v +---------------------------+ | Client parses response | | and updates visual UI | +---------------------------+ | v +---------------------------+ | Displays Positive | | Sentiment badge | +---------------------------+",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-013",
+        "clause_text": "4. Model Inference Workﬂow The Model Inference Workﬂow consists of the following main operations: 1. Load the trained model: The previously trained model is loaded into system memory. 2. Prepare the input: Incoming text is validated and transformed into the format expected by the model. 3. Perform inference: The model processes the input through its network layers. 4. Generate the prediction: The model produces a sentiment label and conﬁdence score. 5. Format the output: The prediction is converted into a structured JSON response. 6. Return the result: The API sends the response to the client, which displays it on the UI.",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-014",
+        "clause_text": "Q4. Compare Pickle and Joblib serialization libraries in Python. 1. Deﬁnition of Serialization Serialization is the process of converting an object's in-memory state into a byte stream that can be saved to a ﬁle and reconstructed later. In machine learning, serialization allows a trained model to be saved and reused for predictions without repeating the expensive training process. Python provides libraries such as Pickle and Joblib for saving and loading trained models. 2. Comparison Between Pickle and Joblib Basis Pickle Joblib Deﬁnition Python library used to serialize and deserialize Python objects. Library commonly used to serialize and deserialize machine learning models and numerical data. Best suited for General Python objects and lightweight models. Scikit-learn models and objects involving large numerical arrays.",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-015",
+        "clause_text": "Basis Pickle Joblib Numerical arrays Can serialize numerical data, but may be less convenient for large arrays. Designed to work eƯiciently with large numerical arrays. Machine learning usage Suitable for simple models and general Python objects. Commonly preferred for saving scikit- learn models. Saving a model Uses pickle.dump(). Uses joblib.dump(). Loading a model Uses pickle.load(). Uses joblib.load(). Security Loading an untrusted serialized ﬁle may execute arbitrary code. Loading an untrusted serialized ﬁle may also execute arbitrary code.",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-016",
+        "clause_text": "Q5. Explain the 4 stages of Model Deployment. Also trace the complete lifecycle of a trained ML model. 1. Deﬁnition of Model Deployment Model Deployment is the process of integrating a trained machine learning model into a production environment so that it can receive live inputs and generate predictions for end users or other systems. It transforms a model developed in an experimental environment into an operational application component. 2. Four Stages of Model Deployment The deployment workﬂow can be explained using four major stages. Stage 1: Model Serialization The trained model is saved to a ﬁle using a serialization library such as Pickle or Joblib.  The model's learned state is saved.  The model can be reused without retraining.  The saved ﬁle can be loaded by the backend application.",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-IND-01",
+          "category": "indemnity",
+          "title": "Mutual indemnity",
+          "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable.",
+          "risk_guidance": "One-sided or unlimited indemnity may create material exposure."
+        },
+        "clause_id": "C-017",
+        "clause_text": "Example: Saving a trained scikit-learn model as model.joblib. Stage 2: Build the API Layer The saved model is integrated into a backend web service using a framework such as Flask or FastAPI.  API endpoints are created.  The API accepts incoming requests.  Input data is validated.  The model generates predictions for valid inputs. Example: Creating a /predict endpoint that accepts input features and returns a prediction. Stage 3: Containerize the Application The model, API code, dependencies, and environment conﬁguration are packaged using Docker.  Dependencies are packaged with the application.  The runtime environment becomes more consistent.  The application can be deployed more reliably across environments. Stage 4: Deploy to the Cloud The containerized application is deployed to a cloud hosting environment.  The API becomes accessible to clients.  The backend receives live requests.  The model performs inference and returns results.  Production monitoring can be used to assess performance. Examples of cloud infrastructure mentioned in the notes include AWS and other managed cloud hosting platforms. 3. Complete Lifecycle of a Trained ML Model The lifecycle can be traced from model development to production use. Step 1: Model Training The model is trained using a prepared dataset to learn patterns and relationships. Step 2: Model Serialization",
+        "category": "general",
+        "policy_id": "POL-IND-01",
+        "suggested_redline": "Review the clause against policy POL-IND-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-018",
+        "clause_text": "The trained model is saved to disk using Pickle or Joblib. Step 3: Model Loading The deployment application loads the saved model into system memory. Step 4: API Development A backend service is developed using Flask or FastAPI to expose endpoints for prediction requests. Step 5: Containerization The application and its dependencies are packaged into a Docker container. Step 6: Deployment The containerized application is deployed to a suitable hosting environment. Step 7: Live Inference The API receives new input, validates it, passes it to the loaded model, and generates a prediction. Step 8: Response Delivery The prediction is formatted as JSON and returned to the client with an appropriate HTTP status code. Step 9: Monitoring and Optimization The deployed system is monitored for prediction performance, latency, reliability, and resource usage. The system can then be optimized or updated when necessary.",
+        "category": "liability",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Suggested discussion draft: Subject to mutually agreed exceptions, each party's aggregate liability should be capped at fees paid or payable under this agreement during the preceding twelve (12) months. Counsel should define appropriate carve-outs."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-CONF-01",
+          "category": "confidentiality",
+          "title": "Confidential information",
+          "text": "Confidentiality obligations should define protected information, permitted disclosures, exclusions, and survival period.",
+          "risk_guidance": "Overbroad or undefined confidentiality obligations need review."
+        },
+        "clause_id": "C-019",
+        "clause_text": "Q6. Discuss REST API development using Flask/FastAPI. 1. Introduction to REST API REST stands for Representational State Transfer. It is an architectural style for designing networked applications. REST APIs commonly use HTTP for communication between a client and a server. They treat resources as addressable entities identiﬁed by Uniform Resource Identiﬁers (URIs). 2. Features of REST Architecture 1. Statelessness Each request must contain the information required by the server to process it. The server does not retain session context as part of the stateless request model. 2. Uniform Interface REST APIs follow consistent conventions for accessing resources and exchanging data. 3. Client-Server Separation",
+        "category": "general",
+        "policy_id": "POL-CONF-01",
+        "suggested_redline": "Review the clause against policy POL-CONF-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-PAY-01",
+          "category": "payment",
+          "title": "Payment terms",
+          "text": "Payment terms, due dates, disputed-invoice handling, and late fees should be explicit and commercially reasonable.",
+          "risk_guidance": "Ambiguous or unusually short payment deadlines need review."
+        },
+        "clause_id": "C-020",
+        "clause_text": "The client handles the user interface, while the server handles backend logic, data management, and AI model inference. 3. Flask and FastAPI Flask Flask is a Python web framework that can be used to build backend APIs. Developers deﬁne routes and write functions to process incoming requests and return responses. FastAPI FastAPI is a Python framework used to develop APIs. It supports structured request handling and can use data models to validate incoming data. Both frameworks can expose trained machine learning models through HTTP endpoints.",
+        "category": "general",
+        "policy_id": "POL-PAY-01",
+        "suggested_redline": "Review the clause against policy POL-PAY-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-PAY-01",
+          "category": "payment",
+          "title": "Payment terms",
+          "text": "Payment terms, due dates, disputed-invoice handling, and late fees should be explicit and commercially reasonable.",
+          "risk_guidance": "Ambiguous or unusually short payment deadlines need review."
+        },
+        "clause_id": "C-021",
+        "clause_text": "Basis Flask FastAPI Framework Python web framework Python API framework Route deﬁnition Uses route decorators such as @app.route() Uses decorators such as @app.post() Request handling Commonly uses the request object Supports declared request models and type hints Data validation Often implemented explicitly or through extensions Supports validation using declared data models Response Can return JSON using jsonify() Can return Python dictionaries that are serialized to JSON AI integration Can load and call trained models Can load and call trained models",
+        "category": "general",
+        "policy_id": "POL-PAY-01",
+        "suggested_redline": "Review the clause against policy POL-PAY-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-022",
+        "clause_text": "Q8. Explain input validation principles in REST API development. Also explain how input validation prevents crashes, improves data consistency, and mitigates security vulnerabilities in backend AI endpoints. 1. Deﬁnition of Input Validation Input validation is the process of checking incoming data to ensure that it follows the expected structure, data types, formats, and value constraints before the application processes it. In an AI application, input validation ensures that the data sent to the backend is suitable for the API and the trained machine learning model. 2. Principles of Input Validation 1. Data Type Validation The API must check that each ﬁeld contains the expected data type. Example: If a model expects a numerical age, the API should reject a text value such as \"twenty\". 2. Required Field Validation The API must check whether all mandatory ﬁelds are present.",
+        "category": "general",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Review the clause against policy POL-LIAB-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-LIAB-01",
+          "category": "liability",
+          "title": "Liability cap",
+          "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs.",
+          "risk_guidance": "Uncapped or unlimited liability needs legal review."
+        },
+        "clause_id": "C-023",
+        "clause_text": "Example: A prediction endpoint requiring a features ﬁeld should reject a request in which that ﬁeld is missing. 3. Format Validation The API should verify that incoming values follow the required format. Example: An API can validate whether an email address follows the expected structure. 4. Range Validation The API should check whether numerical values fall within permitted limits. Example: If an input must be between 0 and 100, a value of 150 should be rejected. 5. Structure Validation The API should ensure that incoming JSON follows the expected schema. Example: A model expecting a list of four numerical features should reject an incompatible input structure. 6. Input Sanitization The backend should sanitize or safely handle incoming data to prevent malformed or unexpected values from causing problems. 7. Server-Side Validation Validation must be performed by the backend even if the client application already validates the input. Client-side checks improve the user experience, but they can be bypassed or manipulated. The backend must independently validate every request. (koi bhi 4 ya 5 principles likh do ) 3. How Input Validation Improves API Reliability and Security A. Prevents Application Crashes Invalid input may cause exceptions during data processing or model inference. For example, a model expecting numerical features may fail when it receives a string. Validation detects the problem before the model is called and allows the API to return a suitable error response instead of an unexpected server failure. B. Improves Data Consistency A model is trained using data with a particular structure and format. Incoming prediction data should match the model's expected input format.",
+        "category": "liability",
+        "policy_id": "POL-LIAB-01",
+        "suggested_redline": "Suggested discussion draft: Subject to mutually agreed exceptions, each party's aggregate liability should be capped at fees paid or payable under this agreement during the preceding twelve (12) months. Counsel should define appropriate carve-outs."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-IND-01",
+          "category": "indemnity",
+          "title": "Mutual indemnity",
+          "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable.",
+          "risk_guidance": "One-sided or unlimited indemnity may create material exposure."
+        },
+        "clause_id": "C-024",
+        "clause_text": "Validation checks:  Required ﬁelds  Data types  Feature structure  Permitted numerical ranges This reduces errors caused by incompatible input data. C. Mitigates Security Vulnerabilities An API must not automatically trust data received from a client. Attackers may manipulate requests or bypass client-side validation using external tools. Server-side validation and sanitization help prevent malformed or unexpected payloads from reaching sensitive backend operations. Input validation should be combined with authentication, authorization, rate limiting, and other appropriate security controls. D. Improves Error Handling When a request is invalid, the API can return a clear error response rather than allowing the failure to become an unhandled exception. The exact error message and status code depend on the API's validation rules. 4. Example of Input Validation in an AI Endpoint Suppose a student performance prediction API accepts study hours, attendance, and internal marks. The expected inputs are: Input Validation Rule Study hours Must be numeric and within the deﬁned permitted range.",
+        "category": "general",
+        "policy_id": "POL-IND-01",
+        "suggested_redline": "Review the clause against policy POL-IND-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-IND-01",
+          "category": "indemnity",
+          "title": "Mutual indemnity",
+          "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable.",
+          "risk_guidance": "One-sided or unlimited indemnity may create material exposure."
+        },
+        "clause_id": "C-025",
+        "clause_text": "Input Validation Rule Attendance Must be numeric and between 0 and 100. Internal marks Must be numeric and between 0 and 100. Required ﬁelds All required values must be present. The API should reject this request because:  study_hours is a string rather than a number.  attendance exceeds the permitted range of 0–100. The model should not be called with this invalid input. The API should return an appropriate validation error. 5. Client-Side vs Server-Side Validation Basis Client-Side Validation Server-Side Validation Location Performed in the client application. Performed on the backend. Primary purpose Provides quick feedback to the user. Protects backend processing and enforces data rules. Can be bypassed? Yes. Must independently validate received requests. Security role Improves usability but is not suƯicient by itself. Acts as a necessary security control. Example Showing an error when a user enters invalid marks. Rejecting invalid marks before model inference. 6. Conclusion",
+        "category": "general",
+        "policy_id": "POL-IND-01",
+        "suggested_redline": "Review the clause against policy POL-IND-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      },
+      {
+        "risk_level": "low",
+        "reasons": [
+          "No configured high-risk phrase matched. This is not a legal conclusion; review against the cited policy."
+        ],
+        "recommended_action": "No configured trigger found; verify context and policy alignment.",
+        "policy": {
+          "id": "POL-CONF-01",
+          "category": "confidentiality",
+          "title": "Confidential information",
+          "text": "Confidentiality obligations should define protected information, permitted disclosures, exclusions, and survival period.",
+          "risk_guidance": "Overbroad or undefined confidentiality obligations need review."
+        },
+        "clause_id": "C-026",
+        "clause_text": "Input validation is an essential part of REST API development. It checks data types, required ﬁelds, formats, structures, and permitted ranges. Proper server-side validation prevents invalid data from reaching the AI model, improves data consistency, reduces unexpected failures, and strengthens backend security.",
+        "category": "general",
+        "policy_id": "POL-CONF-01",
+        "suggested_redline": "Review the clause against policy POL-CONF-01 and propose a narrowly tailored amendment. No automatic legal amendment was generated for this category."
+      }
+    ],
+    "graph": {
+      "nodes": [
+        {
+          "id": "C-001",
+          "label": "Liability",
+          "type": "clause",
+          "detail": "Q1. Discuss real-world applications of AI Application Architecture in Fraud Detection, Medical Imaging, Voice Assistants, and Generative AI Tools. 1. Deﬁnition of AI Application Ar"
+        },
+        {
+          "id": "C-002",
+          "label": "General",
+          "type": "clause",
+          "detail": "C. Voice Assistants Voice assistants capture and interpret spoken natural language to perform tasks or answer questions.  The application captures the user's voice.  The audio is"
+        },
+        {
+          "id": "C-003",
+          "label": "General",
+          "type": "clause",
+          "detail": "Q2. Explain the 4 primary components of AI Application Architecture (Client App, API Layer, AI/ML Model, Database). Also explain the Client-Server paradigm in AI applications. 1. I"
+        },
+        {
+          "id": "C-004",
+          "label": "General",
+          "type": "clause",
+          "detail": " Routes requests to the appropriate AI model.  Returns model results to the client in a structured format. Example: A /sentiment endpoint receives text from the application and f"
+        },
+        {
+          "id": "C-005",
+          "label": "General",
+          "type": "clause",
+          "detail": "| HTTP Request | v +-------------------+ | API Layer | | Validation, | | Authentication, | | Request Routing | +-------------------+ | v +-------------------+ | AI/ML Model | | Mod"
+        },
+        {
+          "id": "C-006",
+          "label": "General",
+          "type": "clause",
+          "detail": "Prediction returns through the API Layer to the Client."
+        },
+        {
+          "id": "C-007",
+          "label": "General",
+          "type": "clause",
+          "detail": "4. Client-Server Paradigm in AI Applications The Client-Server paradigm separates the responsibilities of the client application and the server. Client: Focuses on user interaction"
+        },
+        {
+          "id": "C-008",
+          "label": "General",
+          "type": "clause",
+          "detail": "Q3. Describe the step-by-step Request-Response data ﬂow of a Sentiment Analysis application from user input to visual UI update, including the Model Inference Workﬂow. 1. Introduct"
+        },
+        {
+          "id": "C-009",
+          "label": "General",
+          "type": "clause",
+          "detail": "The client captures the text and prepares it for transmission. Step 2: API Request The client sends an asynchronous HTTP POST request to the /sentiment endpoint. The request contai"
+        },
+        {
+          "id": "C-010",
+          "label": "General",
+          "type": "clause",
+          "detail": "This is an illustrative JSON representation of the prediction described in the notes. Step 6: Response Delivery The API sends the response to the client through the network, along "
+        },
+        {
+          "id": "C-011",
+          "label": "General",
+          "type": "clause",
+          "detail": "The client updates the user interface to display the prediction. For example, the application displays a green badge labelled “Positive Sentiment”. 3. Flowchart +------------------"
+        },
+        {
+          "id": "C-012",
+          "label": "General",
+          "type": "clause",
+          "detail": "+---------------------------+ | Trained AI Model | | Performs Inference | +---------------------------+ | v +---------------------------+ | Prediction: Positive | | Conﬁdence: 0.94"
+        },
+        {
+          "id": "C-013",
+          "label": "General",
+          "type": "clause",
+          "detail": "4. Model Inference Workﬂow The Model Inference Workﬂow consists of the following main operations: 1. Load the trained model: The previously trained model is loaded into system memo"
+        },
+        {
+          "id": "C-014",
+          "label": "General",
+          "type": "clause",
+          "detail": "Q4. Compare Pickle and Joblib serialization libraries in Python. 1. Deﬁnition of Serialization Serialization is the process of converting an object's in-memory state into a byte st"
+        },
+        {
+          "id": "C-015",
+          "label": "General",
+          "type": "clause",
+          "detail": "Basis Pickle Joblib Numerical arrays Can serialize numerical data, but may be less convenient for large arrays. Designed to work eƯiciently with large numerical arrays. Machine lea"
+        },
+        {
+          "id": "C-016",
+          "label": "General",
+          "type": "clause",
+          "detail": "Q5. Explain the 4 stages of Model Deployment. Also trace the complete lifecycle of a trained ML model. 1. Deﬁnition of Model Deployment Model Deployment is the process of integrati"
+        },
+        {
+          "id": "C-017",
+          "label": "General",
+          "type": "clause",
+          "detail": "Example: Saving a trained scikit-learn model as model.joblib. Stage 2: Build the API Layer The saved model is integrated into a backend web service using a framework such as Flask "
+        },
+        {
+          "id": "C-018",
+          "label": "Liability",
+          "type": "clause",
+          "detail": "The trained model is saved to disk using Pickle or Joblib. Step 3: Model Loading The deployment application loads the saved model into system memory. Step 4: API Development A back"
+        },
+        {
+          "id": "C-019",
+          "label": "General",
+          "type": "clause",
+          "detail": "Q6. Discuss REST API development using Flask/FastAPI. 1. Introduction to REST API REST stands for Representational State Transfer. It is an architectural style for designing networ"
+        },
+        {
+          "id": "C-020",
+          "label": "General",
+          "type": "clause",
+          "detail": "The client handles the user interface, while the server handles backend logic, data management, and AI model inference. 3. Flask and FastAPI Flask Flask is a Python web framework t"
+        },
+        {
+          "id": "C-021",
+          "label": "General",
+          "type": "clause",
+          "detail": "Basis Flask FastAPI Framework Python web framework Python API framework Route deﬁnition Uses route decorators such as @app.route() Uses decorators such as @app.post() Request handl"
+        },
+        {
+          "id": "C-022",
+          "label": "General",
+          "type": "clause",
+          "detail": "Q8. Explain input validation principles in REST API development. Also explain how input validation prevents crashes, improves data consistency, and mitigates security vulnerabiliti"
+        },
+        {
+          "id": "C-023",
+          "label": "Liability",
+          "type": "clause",
+          "detail": "Example: A prediction endpoint requiring a features ﬁeld should reject a request in which that ﬁeld is missing. 3. Format Validation The API should verify that incoming values foll"
+        },
+        {
+          "id": "C-024",
+          "label": "General",
+          "type": "clause",
+          "detail": "Validation checks:  Required ﬁelds  Data types  Feature structure  Permitted numerical ranges This reduces errors caused by incompatible input data. C. Mitigates Security Vulne"
+        },
+        {
+          "id": "C-025",
+          "label": "General",
+          "type": "clause",
+          "detail": "Input Validation Rule Attendance Must be numeric and between 0 and 100. Internal marks Must be numeric and between 0 and 100. Required ﬁelds All required values must be present. Th"
+        },
+        {
+          "id": "C-026",
+          "label": "General",
+          "type": "clause",
+          "detail": "Input validation is an essential part of REST API development. It checks data types, required ﬁelds, formats, structures, and permitted ranges. Proper server-side validation preven"
+        },
+        {
+          "id": "POL-LIAB-01",
+          "label": "Liability cap",
+          "type": "policy",
+          "detail": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs."
+        },
+        {
+          "id": "POL-IND-01",
+          "label": "Mutual indemnity",
+          "type": "policy",
+          "detail": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable."
+        },
+        {
+          "id": "POL-CONF-01",
+          "label": "Confidential information",
+          "type": "policy",
+          "detail": "Confidentiality obligations should define protected information, permitted disclosures, exclusions, and survival period."
+        },
+        {
+          "id": "POL-PAY-01",
+          "label": "Payment terms",
+          "type": "policy",
+          "detail": "Payment terms, due dates, disputed-invoice handling, and late fees should be explicit and commercially reasonable."
+        }
+      ],
+      "edges": [
+        {
+          "source": "C-001",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-002",
+          "target": "POL-IND-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-003",
+          "target": "POL-IND-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-004",
+          "target": "POL-IND-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-005",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-006",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-007",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-008",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-009",
+          "target": "POL-IND-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-010",
+          "target": "POL-IND-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-011",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-012",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-013",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-014",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-015",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-016",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-017",
+          "target": "POL-IND-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-018",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-019",
+          "target": "POL-CONF-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-020",
+          "target": "POL-PAY-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-021",
+          "target": "POL-PAY-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-022",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-023",
+          "target": "POL-LIAB-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-024",
+          "target": "POL-IND-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-025",
+          "target": "POL-IND-01",
+          "label": "checked against"
+        },
+        {
+          "source": "C-026",
+          "target": "POL-CONF-01",
+          "label": "checked against"
+        }
+      ]
+    },
+    "stage_log": [
+      "pdf_extracted",
+      "extract_node_completed",
+      "classification_agent_completed",
+      "risk_analysis_agent_completed",
+      "redlining_agent_completed"
+    ],
+    "decisions": [
+      {
+        "clause_id": "C-001",
+        "decision": "approved",
+        "reviewer_note": "",
+        "timestamp": "2026-10-25T18:31:13.544571+00:00"
+      },
+      {
+        "clause_id": "C-002",
+        "decision": "approved",
+        "reviewer_note": "",
+        "timestamp": "2026-10-25T18:31:20.632020+00:00"
+      },
+      {
+        "clause_id": "C-024",
+        "decision": "approved",
+        "reviewer_note": "",
+        "timestamp": "2026-10-25T18:31:43.886307+00:00"
+      },
+      {
+        "clause_id": "C-007",
+        "decision": "rejected",
+        "reviewer_note": "",
+        "timestamp": "2026-10-25T18:31:48.894999+00:00"
+      },
+      {
+        "clause_id": "C-005",
+        "decision": "rejected",
+        "reviewer_note": "",
+        "timestamp": "2026-10-25T18:31:54.401096+00:00"
+      }
+    ],
+    "disclaimer": "Prototype for educational research only. Findings and suggested wording require review by qualified counsel."
+  }
+]

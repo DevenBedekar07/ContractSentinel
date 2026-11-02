@@ -1,0 +1,38 @@
+[
+  {
+    "id": "POL-LIAB-01",
+    "category": "liability",
+    "title": "Liability cap",
+    "text": "Vendor liability should be capped at fees paid or payable in the preceding 12 months, except for agreed carve-outs."
+  },
+  {
+    "id": "POL-IND-01",
+    "category": "indemnity",
+    "title": "Mutual indemnity",
+    "text": "Indemnity obligations should be clearly scoped, proportionate, and include appropriate mutual protections where applicable."
+  },
+  {
+    "id": "POL-TERM-01",
+    "category": "termination",
+    "title": "Termination rights",
+    "text": "The agreement should provide a reasonable termination-for-convenience or cure mechanism where commercially appropriate."
+  },
+  {
+    "id": "POL-REN-01",
+    "category": "renewal",
+    "title": "Auto-renewal notice",
+    "text": "Automatic renewal should include a clear renewal period and a reasonable advance notice window for non-renewal."
+  },
+  {
+    "id": "POL-PAY-01",
+    "category": "payment",
+    "title": "Payment terms",
+    "text": "Payment terms, due dates, disputed-invoice handling, and late fees should be explicit and commercially reasonable."
+  },
+  {
+    "id": "POL-CONF-01",
+    "category": "confidentiality",
+    "title": "Confidential information",
+    "text": "Confidentiality obligations should define protected information, permitted disclosures, exclusions, and survival period."
+  }
+]
